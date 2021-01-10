@@ -1,4 +1,0 @@
-const a=21;
-begin
-	write(a);
-end.

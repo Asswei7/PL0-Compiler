@@ -13,9 +13,9 @@ import java.util.Map;
  * @function integrate
  */
 public class StyleCheck {
-    public static final String FILE_PATH = "F:\\java\\IDEA\\WorkSpace\\helpForProgram\\src\\main\\java\\com\\comment\\test\\ReversePolishNotation.java";
-    public static final String JSON_PATH = "F:\\java\\IDEA\\WorkSpace\\helpForProgram\\src\\main\\resources\\config.json";
-    public static void main(String[] args) throws IOException {
+    public static String FILE_PATH = "F:\\java\\IDEA\\WorkSpace\\helpForProgram\\src\\main\\java\\com\\comment\\test\\ReversePolishNotation.java";
+    public static String JSON_PATH = "F:\\java\\IDEA\\WorkSpace\\helpForProgram\\src\\main\\resources\\config.json";
+    public static void check() throws IOException {
         JsonPro jsonPro = new JsonPro();
         Map<String, List<String>> jsonConfig = jsonPro.getConfig(JSON_PATH);
 

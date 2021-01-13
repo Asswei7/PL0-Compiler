@@ -105,6 +105,27 @@ public class GetComment {
         commentAdvice(comments, classInfo,config);
     }
 
+    public void printAdviceStr(String FILE_PATH,List<String> config) throws IOException {
+        CompilationUnit cu = StaticJavaParser.parse(new File(FILE_PATH));
+
+        Map<String, Integer> classInfo = new HashMap<>() ;
+        VoidVisitor<Map<String, Integer>> classInfoMap = new GetName.ClassInfoMap();
+        classInfoMap.visit(cu, classInfo);
+
+        List<CommentReportEntry> comments = cu.getAllContainedComments()
+                .stream()
+                .map(p -> new CommentReportEntry(p.getClass().getSimpleName(),
+                        p.getContent(),
+                        p.getRange().get().begin.line,
+                        p.getRange().get().begin.column,
+                        p.getRange().get().end.line,
+                        !p.getCommentedNode().isPresent()))
+                .collect(Collectors.toList());
+
+        //comments.forEach(System.out::println);
+        //验证孤立注释，行尾注释，类前的javadoc注释
+        commentAdvice(comments, classInfo,config);
+    }
 
     private static class CommentReportEntry {
         private final String type;

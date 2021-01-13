@@ -1,5 +1,6 @@
 package bright.web;
 
+import com.StyleCheck;
 import bright.Compiler.Error;
 import bright.Compiler.Interpreter;
 import bright.Compiler.Pcode;
@@ -59,13 +60,16 @@ public class CompilerController {
     public String compile(@RequestBody JSONObject jsonParam) throws IOException {
         //System.out.println(jsonParam);
 
+
         String code = jsonParam.getString("code").replaceAll("\r", "");
         Random random = new Random();
         File file = new File("upload-dir/code" + random.nextInt(10000) + ".txt");
         FileWriter writer = new FileWriter(file);
         writer.write(code);
         writer.close();
-
+        com.StyleCheck.FILE_PATH = file.getPath();
+        com.StyleCheck.JSON_PATH = "/Users/jiangzeren/Documents/GitHub/PL0-Compiler/src/main/resources/config.json";
+        com.StyleCheck.check();
         RD_Analyzer compiler = new RD_Analyzer(file);
         try {
             compiler.compile();
@@ -82,6 +86,33 @@ public class CompilerController {
     }
 
     // 编译并执行
+//    @ResponseBody
+//    @RequestMapping(value = "/compiler/interpret", method = RequestMethod.POST)
+//    public String interpret(@RequestBody JSONObject jsonParam) throws IOException {
+//        String code = jsonParam.getString("code").replaceAll("\r", "");
+//        List<Integer> inputList = getInput(jsonParam.getString("input"));
+//
+//        Random random = new Random();
+//        File file = new File("upload-dir/code" + random.nextInt(10000) + ".txt");
+//        FileWriter writer = new FileWriter(file);
+//        writer.write(code);
+//        writer.close();
+//
+//        RD_Analyzer compiler = new RD_Analyzer(file);
+//        compiler.compile();
+//
+//        Interpreter interpreter = new Interpreter(compiler.getPcodes(), inputList);
+//        try {
+//            interpreter.interpret();
+//        }catch (Exception e){
+//            List<String> error = new ArrayList<>();
+//            error.add("Runtime Error!");
+//            Result interpretResult = new Result(compiler.getPcodes(), compiler.getErrors(), error);
+//            return JSON.toJSONString(interpretResult);
+//        }
+//        Result interpretResult = new Result(compiler.getPcodes(), compiler.getErrors(), interpreter.getOutput());
+//        return JSON.toJSONString(interpretResult);
+//    }
     @ResponseBody
     @RequestMapping(value = "/compiler/interpret", method = RequestMethod.POST)
     public String interpret(@RequestBody JSONObject jsonParam) throws IOException {

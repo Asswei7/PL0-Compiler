@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>JAVA analyze</title>
+    <title>PL/0 Compiler</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@
 <body>
 <div class="container" >
     <div class="page-header" style="margin-top: 0; margin-bottom: 7PX; padding-bottom: 0;">
-        <h3>JAVA analyze </h3>
+        <h3>PL/0 Compiler </h3>
     </div>
 
     <ol class="breadcrumb" style="margin-bottom: 5px">
@@ -45,58 +45,56 @@
     </ol>
 
     <div class="row" style="margin: 0">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="row">
                 <h4>Code</h4>
-                <pre id="code" class="input" style="height: 300px"></pre>
+                <pre id="code" class="input" style="height: 300px;"></pre>
             </div>
 
             <div class="row">
                 <div class="col-md-3">
                     <input type="file" id="input_file" onchange="loadFile()">
                 </div>
-                <div class="col-md-7"></div>
-<!--                <div class="col-md-1" style="display: none">-->
-<!--                    <button id="compile" class="btn btn-primary" data-loading-text="Compiling...">-->
-<!--                        编译-->
-<!--                    </button>-->
-<!--                </div>-->
+                <div class="col-md-5"></div>
+                <div class="col-md-1">
+                    <button id="compile" class="btn btn-primary" data-loading-text="Compiling...">
+                        编译
+                    </button>
+                </div>
                 <div class="col-md-2" style="float: right; margin-right: 15px;">
                     <button id="run" class="btn btn-success" data-loading-text="Running...">
-                        分析
+                        编译并运行
                     </button>
                 </div>
             </div>
 
-<!--            <div class="row" style="display: none">-->
-<!--                <h4>Input:</h4>-->
-<!--                <pre id="input" class="input"></pre>-->
-<!--            </div>-->
+            <div class="row">
+                <h4>Input:</h4>
+                <pre id="input" class="input"></pre>
+            </div>
 
         </div>
 
-<!--        <div class="col-md-1">-->
-<!--            <div class="row" style="margin-left: 20px; display: none">-->
-<!--                <h4>&nbsp;P-code </h4>-->
-<!--                <div class="result" id="pcode">-->
-<!--                    <table class="table table-hover table-bordered table-striped table-earnings">-->
-<!--                        <thead>-->
-<!--                            <tr>-->
-<!--                                <th scope="col">No.</th>-->
-<!--                                <th scope="col">Operation</th>-->
-<!--                                <th scope="col">Layer</th>-->
-<!--                                <th scope="col">Address</th>-->
-<!--                            </tr>-->
-<!--                        </thead>-->
-<!--                    </table>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-    </div>
-    <div class="row">
-        <div class = "col-md-12">
-            <h4>Output:</h4>
-            <pre id="output" class="input"></pre>
+        <div class="col-md-6">
+            <div class="row" style="margin-left: 20px">
+                <h4>&nbsp;P-code </h4>
+                <div class="result" id="pcode">
+                    <table class="table table-hover table-bordered table-striped table-earnings">
+                        <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Operation</th>
+                            <th scope="col">Layer</th>
+                            <th scope="col">Address</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="row" style="margin-left: 20px">
+                <h4>Output:</h4>
+                <pre id="output" class="input"></pre>
+            </div>
         </div>
     </div>
 </div>
@@ -238,4 +236,3 @@
 </script>
 </body>
 </html>
-

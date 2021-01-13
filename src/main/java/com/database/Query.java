@@ -10,7 +10,7 @@ import java.util.Set;
  * @author Asswei
  */
 public class Query {
-    public boolean querySQL(String libraryName,int num, List<String> exceptLibrary){
+    public boolean querySQL(String libraryName,int num, List<String> exceptLibrary,List<Pair<String,String>>res){
         //libraryName = "ja";
         Connection con;
         boolean flag = false;
@@ -56,7 +56,10 @@ public class Query {
                 count++;
                 name = resultSet.getString("lib");
                 String describ = resultSet.getString("des");
-                System.out.println("类库名：" + name+"  "+"该类库的功能是："+describ);
+                //System.out.println("类库名：" + name+"  "+"该类库的功能是："+describ);
+                //res.add("推荐的类库名：" + name+"  "+"该类库的功能是："+describ);
+                Pair<String,String> tmp = new Pair<>(name,describ);
+                res.add(tmp);
                 if(count==num){
                     break;
                 }

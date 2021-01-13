@@ -140,13 +140,13 @@ public class CompilerController {
         writer.close();
 
         com.StyleCheck.FILE_PATH = file.getPath();
-        com.StyleCheck.JSON_PATH = "/Users/jiangzeren/Documents/GitHub/PL0-Compiler/src/main/resources/config.json";
+        com.StyleCheck.JSON_PATH = "src/main/resources/config.json";
 
-        System.setOut(new PrintStream(new File("/Users/jiangzeren/Documents/GitHub/PL0-Compiler/style.txt")));
+        System.setOut(new PrintStream(new File("./style.txt")));
         com.StyleCheck.check();
         System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
 
-        File file_style = new File("/Users/jiangzeren/Documents/GitHub/PL0-Compiler/style.txt");
+        File file_style = new File("./style.txt");
         FileReader reader = new FileReader(file_style);
         int aa;
         aa = reader.read();

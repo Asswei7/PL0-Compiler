@@ -16,9 +16,9 @@ import java.util.stream.Collectors;
  */
 public class GetComment {
     //private static final String FILE_PATH = "/src/main/java/com/comment/test/ReversePolishNotation.java";
-    private static final String FILE_PATH ="F:/java/IDEA/WorkSpace/helpForProgram/src/main/java/com/comment/test/ReversePolishNotation.java";
+    //private static final String FILE_PATH ="F:/java/IDEA/WorkSpace/helpForProgram/src/main/java/com/comment/test/ReversePolishNotation.java";
     //获取单行注释下一行代码的开始的列号
-    public static int getCodeColNum(int lineNum) throws IOException {
+    public static int getCodeColNum(int lineNum,String FILE_PATH) throws IOException {
         File file = new File(FILE_PATH);
         FileReader fileReader = new FileReader(file);
         LineNumberReader reader = new LineNumberReader(fileReader);
@@ -47,13 +47,13 @@ public class GetComment {
 
     }
     //在此处输出对注释的建议，可以在这里根据配置文件设置输出
-    public static void commentAdvice(List<CommentReportEntry> ls, Map<String, Integer> classInfo,List<String>config) throws IOException {
+    public static void commentAdvice(List<CommentReportEntry> ls, Map<String, Integer> classInfo,List<String>config,String FILE_PATH) throws IOException {
         //config 行尾、孤立、方法前、类前
         List<Integer> flag = new ArrayList<>();
         Map<Integer, Boolean> lineMap = new HashMap<>();
         for(CommentReportEntry comment: ls){
             if("LineComment".equals(comment.type) && !comment.isOrphan){
-                int codeColNum = getCodeColNum(comment.lineNumber+1);
+                int codeColNum = getCodeColNum(comment.lineNumber+1,FILE_PATH);
                 //如果配置文件为none，不处理也不打印
                 if(comment.colNumber != codeColNum && !config.get(0).equals("none")){
                     //System.out.println("注释的列号"+comment.colNumber+"下一条语句的列好"+codeColNum);
@@ -102,7 +102,7 @@ public class GetComment {
 
         //comments.forEach(System.out::println);
         //验证孤立注释，行尾注释，类前的javadoc注释
-        commentAdvice(comments, classInfo,config);
+        commentAdvice(comments, classInfo,config,FILE_PATH);
     }
 
     public void printAdviceStr(String FILE_PATH,List<String> config) throws IOException {
@@ -124,7 +124,7 @@ public class GetComment {
 
         //comments.forEach(System.out::println);
         //验证孤立注释，行尾注释，类前的javadoc注释
-        commentAdvice(comments, classInfo,config);
+        commentAdvice(comments, classInfo,config,FILE_PATH);
     }
 
     private static class CommentReportEntry {

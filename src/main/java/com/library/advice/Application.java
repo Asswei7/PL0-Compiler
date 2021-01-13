@@ -14,8 +14,11 @@ import java.util.*;
  */
 public class Application {
     public static final String JSON_PATH = "F:\\java\\IDEA\\WorkSpace\\helpForProgram\\src\\main\\resources\\config.json";
+    public static final String FILE_PATH = "F:\\java\\IDEA\\WorkSpace\\helpForProgram\\src\\main\\resources\\config.json";
     public static void main(String[] args) throws Exception {
         Map<Pair<String,String>,Integer> libraryMap = new HashMap<>();
+
+
         String libraryName = "java.awt.geom.Line2D";
         List<String> exceptLibrary = new ArrayList<>(20);
         //通过前端读入输入的已经输入的类库

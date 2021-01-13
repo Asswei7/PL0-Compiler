@@ -14,7 +14,7 @@ import java.util.Map;
  * @author Asswei
  */
 public class NamingApp {
-    public static final String FILE_PATH = "F:\\java\\IDEA\\WorkSpace\\Student\\src\\Student.java";
+    //public static final String FILE_PATH = "F:\\java\\IDEA\\WorkSpace\\Student\\src\\Student.java";
     public static final int PACKAGE_TYPE = 1;
     public static final int CLASS_TYPE = 2;
     public static final int VAR_TYPE = 3;

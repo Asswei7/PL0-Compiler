@@ -20,6 +20,7 @@ public class Advice {
     }
 
     public void printAdvice(Map<String, Integer> symbolInfo, NamingTest namingTest, Advice advice, int type, String config) {
+
         //遍历字典,返回集合中所有键
         Set<String> keys = symbolInfo.keySet();
         for (String key : keys) {

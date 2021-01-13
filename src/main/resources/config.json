@@ -1,0 +1,26 @@
+{
+	"crawlModule":{
+		"inName":"none",
+		"inDescription":"demand",
+		"inReadme":"demand",
+		"stars":">20",
+		"size":"<500",
+		"pushed":">2020-01-01"
+	},
+	"commentModule":{
+		"lineTailComment":"deny",
+		"orphanComment":"deny",
+		"beforeClassComment":"demand",
+		"beforeMethodComment":"none"
+	},
+	"symbolModule":{
+		"packageName": "allLower",
+		"methodName": "none",
+		"className": "UpperCamelCase",
+		"variableName": "lowerCamelCase"
+	},
+	"libraryModule":{
+		"num4display": "4",
+		"displayMethod":"simpleDisplay",
+	}
+}

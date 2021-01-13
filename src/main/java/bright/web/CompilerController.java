@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -46,6 +44,18 @@ class Result{
     }
 }
 
+class Result_style{
+    private String output;
+
+    public Result_style(String output) {
+        this.output = output;
+    }
+
+    public String getOutput() {
+        return output;
+    }
+}
+
 @Controller
 public class CompilerController {
 
@@ -69,7 +79,11 @@ public class CompilerController {
         writer.close();
         com.StyleCheck.FILE_PATH = file.getPath();
         com.StyleCheck.JSON_PATH = "/Users/jiangzeren/Documents/GitHub/PL0-Compiler/src/main/resources/config.json";
+
+        System.setOut(new PrintStream(new File("/Users/jiangzeren/Documents/GitHub/PL0-Compiler/style.txt")));
         com.StyleCheck.check();
+        System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
+
         RD_Analyzer compiler = new RD_Analyzer(file);
         try {
             compiler.compile();
@@ -125,20 +139,38 @@ public class CompilerController {
         writer.write(code);
         writer.close();
 
-        RD_Analyzer compiler = new RD_Analyzer(file);
-        compiler.compile();
+        com.StyleCheck.FILE_PATH = file.getPath();
+        com.StyleCheck.JSON_PATH = "/Users/jiangzeren/Documents/GitHub/PL0-Compiler/src/main/resources/config.json";
 
-        Interpreter interpreter = new Interpreter(compiler.getPcodes(), inputList);
-        try {
-            interpreter.interpret();
-        }catch (Exception e){
-            List<String> error = new ArrayList<>();
-            error.add("Runtime Error!");
-            Result interpretResult = new Result(compiler.getPcodes(), compiler.getErrors(), error);
-            return JSON.toJSONString(interpretResult);
+        System.setOut(new PrintStream(new File("/Users/jiangzeren/Documents/GitHub/PL0-Compiler/style.txt")));
+        com.StyleCheck.check();
+        System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
+
+        File file_style = new File("/Users/jiangzeren/Documents/GitHub/PL0-Compiler/style.txt");
+        FileReader reader = new FileReader(file_style);
+        int aa;
+        aa = reader.read();
+        String content = "";
+        while(aa!=(-1)){
+            content += (char)aa;
+            aa = reader.read();
         }
-        Result interpretResult = new Result(compiler.getPcodes(), compiler.getErrors(), interpreter.getOutput());
-        return JSON.toJSONString(interpretResult);
+        Result_style result = new Result_style(content);
+
+//        RD_Analyzer compiler = new RD_Analyzer(file);
+//        compiler.compile();
+//
+//        Interpreter interpreter = new Interpreter(compiler.getPcodes(), inputList);
+//        try {
+//            interpreter.interpret();
+//        }catch (Exception e){
+//            List<String> error = new ArrayList<>();
+//            error.add("Runtime Error!");
+//            Result interpretResult = new Result(compiler.getPcodes(), compiler.getErrors(), error);
+//            return JSON.toJSONString(interpretResult);
+//        }
+//        Result interpretResult = new Result(compiler.getPcodes(), compiler.getErrors(), interpreter.getOutput());
+        return JSON.toJSONString(result);
     }
 
     private List<Integer> getInput(String s){

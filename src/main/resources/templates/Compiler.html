@@ -175,6 +175,25 @@
         output.clearSelection();
     }
 
+    function fillStyleOutput(style_output) {
+        let s ='';
+        s += style_output
+        // let s = '';
+        // // output
+        // $.each(outputList, function (i, output) {
+        //     s += output;
+        //     s += '\n';
+        // });
+        // // error
+        // if(errorList != null){
+        //     $.each(errorList, function (i, error) {
+        //         s += 'Error(Line ' + error['line'] + ', Column ' + error['col'] + '): ' + error['kind'] + '\n';
+        //     });
+        // }
+        output.setValue(s);
+        output.clearSelection();
+    }
+
     $('#compile').click(function (e) {
         let data = {};
         data.code = code.getValue();
@@ -218,19 +237,16 @@
                 contentType: "application/json;charset=utf-8",
                 success: function (json) {
                     json = JSON.parse(json);
-                    const pcodeList = json['pcodeList'];
-                    const errorList = json['errorList'];
-                    const outputList = json['outputList'];
+                    const output_str = json['output'];
 
-                    console.log(errorList);
-                    console.log(pcodeList);
-                    console.log(outputList);
 
-                    fillPcode(pcodeList);
-                    if(errorList.length === 0)
-                        fillOutput(null, outputList);
-                    else
-                        fillOutput(errorList, ["编译失败！"]);
+                    console.log(output_str);
+                    fillStyleOutput(output_str)
+                    // fillPcode(pcodeList);
+                    // if(errorList.length === 0)
+                    //     fillOutput(null, outputList);
+                    // else
+                    //     fillOutput(errorList, ["编译失败！"]);
                 }
             });
         }

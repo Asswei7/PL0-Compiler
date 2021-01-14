@@ -34,7 +34,7 @@ public class LexController {
 
     @GetMapping({"/", "/lexer"})
     public String ui(Model model){
-        return "ui2";
+        return "Compiler";
     }
 
     //处理文件上传

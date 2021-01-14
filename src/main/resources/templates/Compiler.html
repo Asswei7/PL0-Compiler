@@ -187,7 +187,7 @@
             s += '<tr>';
             s += '<td>' + pcode['pname'] + '</td>';
             s += '<td>' + pcode['description'] + '</td>';
-            s += '<td>' + pcode['url'] + '</td>';
+            s += '<td>' + '<a href="'+ pcode['url'] +'" target="_blank"><span class="glyphicon glyphicon-link" aria-hidden="true"></span></a>' + '</td>';
             s += '</tr>';
         });
         s += '</tbody></table>';

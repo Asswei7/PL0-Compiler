@@ -1,6 +1,7 @@
 package bright.web;
 
 import com.StyleCheck;
+import com.library.advice.Application;
 import bright.Compiler.Error;
 import bright.Compiler.Interpreter;
 import bright.Compiler.Pcode;
@@ -139,7 +140,7 @@ public class CompilerController {
 //    }
     @ResponseBody
     @RequestMapping(value = "/compiler/interpret", method = RequestMethod.POST)
-    public String interpret(@RequestBody JSONObject jsonParam) throws IOException {
+    public String interpret(@RequestBody JSONObject jsonParam) throws IOException, Exception {
         String code = jsonParam.getString("code").replaceAll("\r", "");
         List<Integer> inputList = getInput(jsonParam.getString("input"));
 
@@ -150,12 +151,15 @@ public class CompilerController {
         writer.close();
 
         com.StyleCheck.FILE_PATH = file.getPath();
+        Application.FILE_PATH = file.getPath();
         File style_config = new File("./config_new.json");
         if(!style_config.exists()){
             com.StyleCheck.JSON_PATH = "src/main/resources/config.json";
+            Application.JSON_PATH = "src/main/resources/config.json";
         }
         else{
             com.StyleCheck.JSON_PATH = "./config_new.json";
+            Application.JSON_PATH = "./config_new.json";
         }
 
         System.setOut(new PrintStream(new File("./style.txt")));
@@ -172,12 +176,12 @@ public class CompilerController {
             aa = reader.read();
         }
 
-
-        PackageInfo packageInfo1 = new PackageInfo("java.test11","this is description","http://127.0.0.1");
-        PackageInfo packageInfo2 = new PackageInfo("java.test22","this is description","http://127.0.0.1");
-        List<PackageInfo> packageInfoList = new ArrayList<>();
-        packageInfoList.add(packageInfo1);
-        packageInfoList.add(packageInfo2);
+        List<PackageInfo> packageInfoList = Application.advice();
+//        PackageInfo packageInfo1 = new PackageInfo("java.test11","this is description","http://127.0.0.1");
+//        PackageInfo packageInfo2 = new PackageInfo("java.test22","this is description","http://127.0.0.1");
+//        List<PackageInfo> packageInfoList = new ArrayList<>();
+//        packageInfoList.add(packageInfo1);
+//        packageInfoList.add(packageInfo2);
         Result_style result = new Result_style(content, packageInfoList);
 //        RD_Analyzer compiler = new RD_Analyzer(file);
 //        compiler.compile();

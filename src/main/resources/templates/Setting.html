@@ -48,66 +48,159 @@
 
     <div class="row" style="margin: 0">
         <div class="col-md-12">
-            <form role="form" id="settingform">
-                <div class="form-group">
-                    <h4>Code</h4>
-                    <select class="selectpicker" id="select1" name="select1">
-                        <option>Mustard</option>
-                        <option>Ketchup</option>
-                        <option>Barbecue</option>
-                    </select>
+            <form role="form" id="commentModule">
+                <div class="row" >
+                    <div class="form-group" >
+                    <h4>Comment Module</h4>
+                    <div class="col-md-3">
+                        <h5>lineTailComment</h5>
+                        <select class="selectpicker" id="lineTailComment" name="lineTailComment">
+                            <option>deny</option>
+                            <option>demand</option>
+                            <option>none</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>orphanComment</h5>
+                        <select class="selectpicker" id="orphanComment" name="orphanComment">
+                            <option>deny</option>
+                            <option>demand</option>
+                            <option>none</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>beforeClassComment</h5>
+                        <select class="selectpicker" id="beforeClassComment" name="beforeClassComment">
+                            <option>deny</option>
+                            <option>demand</option>
+                            <option>none</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>beforeMethodComment</h5>
+                        <select class="selectpicker" id="beforeMethodComment" name="beforeMethodComment">
+                            <option>deny</option>
+                            <option>demand</option>
+                            <option>none</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <h4>Code</h4>
-                    <select class="selectpicker" id="select2" name="select2">
-                        <option>Mustard</option>
-                        <option>Ketchup</option>
-                        <option>Barbecue</option>
-                    </select>
                 </div>
+<!--                <button type="submit" class="btn btn-default">提交</button>-->
+            </form>
+            <form role="form" id="symbolModule">
+                <div class="row" >
+                    <div class="form-group" >
+                        <h4>symbolModule</h4>
+                        <div class="col-md-3">
+                            <h5>packageName</h5>
+                            <select class="selectpicker" id="packageName" name="packageName">
+                                <option>UpperCamelCase</option>
+                                <option>lowerCamelCase</option>
+                                <option>allLower</option>
+                                <option>none</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <h5>methodName</h5>
+                            <select class="selectpicker" id="methodName" name="methodName">
+                                <option>UpperCamelCase</option>
+                                <option>lowerCamelCase</option>
+                                <option>allLower</option>
+                                <option>none</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <h5>className</h5>
+                            <select class="selectpicker" id="className" name="className">
+                                <option>UpperCamelCase</option>
+                                <option>lowerCamelCase</option>
+                                <option>allLower</option>
+                                <option>none</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <h5>variableName</h5>
+                            <select class="selectpicker" id="variableName" name="variableName">
+                                <option>UpperCamelCase</option>
+                                <option>lowerCamelCase</option>
+                                <option>allLower</option>
+                                <option>none</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form role="form" id="libraryModule">
+                <div class="row" >
+                    <div class="form-group" >
+                        <h4>symbolModule</h4>
+                        <div class="col-md-3">
+                            <h5>num4display</h5>
+                            <input type="text" class="form-control" id="num4display" name="num4display" placeholder="4" value="4">
+                        </div>
+                        <div class="col-md-3">
+                            <h5>displayMethod</h5>
+                            <select class="selectpicker" id="displayMethod" name="displayMethod">
+                                <option>simpleDisplay</option>
+                                <option>verboseDisplay</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form role="form" id="crawlModule">
+
+                    <div class="form-group" >
+                        <div class="row">
+                            <h4>Crawl Module</h4>
+                            <div class="col-md-3">
+                                <h5>inName</h5>
+                                <select class="selectpicker" id="inName" name="inName" >
+                                    <option>deny</option>
+                                    <option>demand</option>
+                                    <option>none</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>inDescription</h5>
+                                <select class="selectpicker" id="inDescription" name="inDescription" >
+                                    <option>deny</option>
+                                    <option>demand</option>
+                                    <option>none</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>inReadme</h5>
+                                <select class="selectpicker" id="inReadme" name="inReadme" >
+                                    <option>deny</option>
+                                    <option>demand</option>
+                                    <option>none</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>stars</h5>
+                                <input type="text" class="form-control" id="stars" name="stars" placeholder=">20" value=">20">
+                            </div>
+                            <div class="col-md-3">
+                                <h5>size</h5>
+                                <input type="text" class="form-control" id="size" name="size" placeholder="<500" value="<500">
+                            </div>
+                            <div class="col-md-3">
+                                <h5>pushed</h5>
+                                <input type="text" class="form-control" id="pushed" name="pushed" placeholder=">2020-01-01" value=">2020-01-01">
+                            </div>
+                        </div>
+                    </div>
+
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox"> 请打勾
+                        <input type="checkbox" id="isCrawler" name="isCrawler"> 是否应用爬虫爬取额外数据
                     </label>
                 </div>
-                <button type="submit" class="btn btn-default">提交</button>
             </form>
-
-            <div class="row">
-                <h4>Code</h4>
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Dropdown
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="row">
-                <h4>Code</h4>
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Dropdown
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </div>
-            </div>
-
-
             <div class="row">
                 <button id="save" class="btn btn-success" data-loading-text="Running...">
                     保存
@@ -198,6 +291,46 @@
         var jsonObj_all = {}
         jsonObj_all['Amodule']=jsonObj
         jsonObj_all['Bmodule']="x"
+        console.log(jsonObj_all);
+        // json对象再转换成json字符串
+        return JSON.stringify(jsonObj_all);
+    }
+    /** 表单序列化成json字符串的方法  */
+    function form2JsonString_custom() {
+        var jsonObj_all = {}
+
+        var paramArray = $('#commentModule').serializeArray();
+        /*请求参数转json对象*/
+        var jsonObj={};
+        $(paramArray).each(function(){
+            jsonObj[this.name]=this.value;
+        });
+        jsonObj_all['commentModule']=jsonObj
+
+        paramArray = $('#symbolModule').serializeArray();
+        /*请求参数转json对象*/
+        jsonObj={};
+        $(paramArray).each(function(){
+            jsonObj[this.name]=this.value;
+        });
+        jsonObj_all['symbolModule']=jsonObj
+
+        paramArray = $('#libraryModule').serializeArray();
+        /*请求参数转json对象*/
+        jsonObj={};
+        $(paramArray).each(function(){
+            jsonObj[this.name]=this.value;
+        });
+        jsonObj_all['libraryModule']=jsonObj
+
+        paramArray = $('#crawlModule').serializeArray();
+        /*请求参数转json对象*/
+        jsonObj={};
+        $(paramArray).each(function(){
+            jsonObj[this.name]=this.value;
+        });
+        jsonObj_all['crawlModule']=jsonObj
+
         console.log(jsonObj_all);
         // json对象再转换成json字符串
         return JSON.stringify(jsonObj_all);
@@ -313,10 +446,10 @@
             $.ajax({
                 url: '/setting/save',
                 type: 'post',
-                data: form2JsonString("settingform"),
+                data: form2JsonString_custom(),
                 contentType: "application/json;charset=utf-8",
                 success: function (json) {
-                    alert("success");
+                    alert("Success");
                     console.log("success")
                     json = JSON.parse(json);
                     console.log(json);

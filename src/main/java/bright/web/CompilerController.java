@@ -150,7 +150,13 @@ public class CompilerController {
         writer.close();
 
         com.StyleCheck.FILE_PATH = file.getPath();
-        com.StyleCheck.JSON_PATH = "src/main/resources/config.json";
+        File style_config = new File("./config_new.json");
+        if(!style_config.exists()){
+            com.StyleCheck.JSON_PATH = "src/main/resources/config.json";
+        }
+        else{
+            com.StyleCheck.JSON_PATH = "./config_new.json";
+        }
 
         System.setOut(new PrintStream(new File("./style.txt")));
         com.StyleCheck.check();

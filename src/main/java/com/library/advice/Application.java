@@ -9,6 +9,7 @@ import com.github.javaparser.ast.ImportDeclaration;
 import com.github.javaparser.ast.visitor.VoidVisitor;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import javafx.util.Pair;
+import  bright.web.PackageInfo;
 
 import java.io.*;
 import java.util.*;
@@ -17,6 +18,8 @@ import java.util.*;
  *
  * @author Asswei
  */
+
+
 public class Application {
     public static String JSON_PATH = "F:\\java\\IDEA\\WorkSpace\\helpForProgram\\src\\main\\resources\\config.json";
     public static String FILE_PATH = "F:\\java\\IDEA\\WorkSpace\\helpForProgram\\src\\main\\java\\com\\comment\\test\\ReversePolishNotation.java";
@@ -28,7 +31,8 @@ public class Application {
         }
     }
 
-    public static List<Pair<String,String>> advice() throws Exception {
+    public static List<PackageInfo> advice() throws Exception {
+
         Map<Pair<String,String>,Integer> libraryMap = new HashMap<>();
         CompilationUnit cu = StaticJavaParser.parse(new FileInputStream(FILE_PATH));
         List<String> libraryNames = new ArrayList<>();
@@ -47,7 +51,8 @@ public class Application {
         //System.out.println(libraryName);
         List<String> exceptLibrary = new ArrayList<>(20);
 
-        List<Pair<String,String>> res = new ArrayList<>();
+        //List<Pair<String,String>> res = new ArrayList<>();
+        List<PackageInfo> res = new ArrayList<>();
         for(String libraryName:libraryNames){
             exceptLibrary.add(libraryName);
 
@@ -98,8 +103,9 @@ public class Application {
                         int idx = lineTxt.indexOf("'", 4);
                         //System.out.println(lineTxt);只输出类库的字符
                         Pair<String,String > tmp = new Pair<>(lineTxt.substring(2,idx),"爬虫得到的");
-
-                        res.add(tmp);
+                        String link = "www.javadoc#libraryInfo"+lineTxt.substring(2,idx);
+                        PackageInfo packageInfo = new PackageInfo(lineTxt.substring(2,idx),"爬虫得到的该类库",link);
+                        res.add(packageInfo);
                         //System.out.println(idx);
                         //System.out.println(lineTxt.substring(2,idx));
 

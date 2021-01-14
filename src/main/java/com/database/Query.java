@@ -5,12 +5,14 @@ import javafx.util.Pair;
 import java.sql.*;
 import java.util.List;
 import java.util.Set;
-
+import bright.web.PackageInfo;
 /**
  * @author Asswei
  */
+
+
 public class Query {
-    public boolean querySQL(String libraryName,int num, List<String> exceptLibrary,List<Pair<String,String>>res){
+    public boolean querySQL(String libraryName,int num, List<String> exceptLibrary,List<PackageInfo>res){
         //libraryName = "ja";
         Connection con;
         boolean flag = false;
@@ -58,8 +60,10 @@ public class Query {
                 String describ = resultSet.getString("des");
                 //System.out.println("类库名：" + name+"  "+"该类库的功能是："+describ);
                 //res.add("推荐的类库名：" + name+"  "+"该类库的功能是："+describ);
-                Pair<String,String> tmp = new Pair<>(name,describ);
-                res.add(tmp);
+                String link = "www.javadoc#libraryInfo"+name;
+                PackageInfo packageInfo = new PackageInfo(name,describ,link);
+                //Pair<String,String> tmp = new Pair<>(name,describ,url);
+                res.add(packageInfo);
                 if(count==num){
                     break;
                 }

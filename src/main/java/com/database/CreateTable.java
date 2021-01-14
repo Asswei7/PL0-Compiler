@@ -41,12 +41,12 @@ public class CreateTable {
                 int value = libraryMap.get(key);
                 int cnt1 = count_lib.get(libA);
                 int cnt2 = count_lib.get(libB);
-                double prob1 = (double)value/cnt1;
+                double prob1 = (double)value/cnt1 + (double)value/cnt2;
                 double prob2 = (double) value/cnt2;
                 System.out.println(prob1);
                 //String sql = "INSERT INTO `schematest`.`draw_lib` (`pairFirst`, `pairSecond`, `value`) VALUES (libA, libB, value);";
                 String sql = "INSERT INTO `schematest`.`draw_lib` (`pairFirst`, `pairSecond`, `value`,`prob1`,`prob2`,`description1`,`description2`) VALUES (";
-                sql += "'"+ libA +"'"+","+"'"+libB+"'"+",'"+value+"',"+String.valueOf(prob1)+","+String.valueOf(prob2)+",'the func is..','the func is..'"+");";
+                sql += "'"+ libA +"'"+","+"'"+libB+"'"+",'"+value+"',"+String.valueOf(prob1)+","+String.valueOf(prob1)+",'the func is..','the func is..'"+");";
                 //System.out.println(sql);
 
                 int resultSet = statement.executeUpdate(sql);

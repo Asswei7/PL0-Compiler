@@ -60,7 +60,8 @@ public class Query {
                 String describ = resultSet.getString("des");
                 //System.out.println("类库名：" + name+"  "+"该类库的功能是："+describ);
                 //res.add("推荐的类库名：" + name+"  "+"该类库的功能是："+describ);
-                String link = "www.javadoc#libraryInfo"+name;
+                String link = "https://docs.oracle.com/javase/8/docs/api/"+name.replace(".","/")+".html";
+                System.out.println(link);
                 PackageInfo packageInfo = new PackageInfo(name,describ,link);
                 //Pair<String,String> tmp = new Pair<>(name,describ,url);
                 res.add(packageInfo);

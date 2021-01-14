@@ -53,12 +53,20 @@ public class JsonPro {
         String stars = (String) crawlModule.get("stars");
         String size = (String) crawlModule.get("size");
         String pushed = (String) crawlModule.get("pushed");
+        String isCrawler;
+        if(crawlModule.get("isCrawler")==null){
+            isCrawler = "off";
+        }else{
+            isCrawler = (String) crawlModule.get("isCrawler") ;
+        }
+
         crawlConfig.add(inName);
         crawlConfig.add(inReadme);
         crawlConfig.add(inDescription);
         crawlConfig.add(stars);
         crawlConfig.add(size);
         crawlConfig.add(pushed);
+        crawlConfig.add(isCrawler);
         jsonConfig.put("crawl",crawlConfig);
 
         //读取注释模块的配置文件

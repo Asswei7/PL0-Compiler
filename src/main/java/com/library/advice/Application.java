@@ -21,6 +21,7 @@ import java.util.*;
 
 
 public class Application {
+    public static Process process;
     public static String JSON_PATH = "F:\\java\\IDEA\\WorkSpace\\helpForProgram\\src\\main\\resources\\config.json";
     public static String FILE_PATH = "F:\\java\\IDEA\\WorkSpace\\helpForProgram\\src\\main\\java\\com\\comment\\test\\ReversePolishNotation.java";
     static class ImportNameCollector extends VoidVisitorAdapter<List<String>> {
@@ -30,6 +31,13 @@ public class Application {
             collector.add(id.getNameAsString());
         }
     }
+
+    public static void main(String[] args) throws Exception {
+        List<PackageInfo> ls = new ArrayList<>();
+        ls = advice();
+    }
+
+
 
     public static List<PackageInfo> advice() throws Exception {
 
@@ -44,6 +52,8 @@ public class Application {
         JsonPro jsonPro = new JsonPro();
         Map<String, List<String>> jsonConfig = jsonPro.getConfig(JSON_PATH);
         String num = jsonConfig.get("library").get(0);
+        String isCrawler = jsonConfig.get("crawl").get(6);
+        //System.out.println("is："+isCrawler);
         int n = Integer.parseInt(num);
         //System.out.println(num);
 
@@ -59,11 +69,13 @@ public class Application {
             //接下来是数据库的查询
             Query query = new Query();
             boolean flag = query.querySQL(libraryName,n,exceptLibrary,res);
-
+            if(!flag && isCrawler.equals("off")){
+                continue;
+            }
 
             //flag = false;
             //如果类库名找不到,启动爬虫代码，并读取爬虫的结果
-            if(!flag){
+            if(!flag && isCrawler.equals("on")){
                 System.out.println("数据库中查询不到类库"+libraryName+"，需要进行爬虫！");
                 Process proc;
                 try {
@@ -84,6 +96,7 @@ public class Application {
 
 
                     proc.waitFor();
+
                     //读txt文件并进行处理
                     //----------------------------------------------------------------
                     String txtPath = "F:\\java\\IDEA\\WorkSpace\\helpForProgram\\src\\main\\java\\com\\library\\advice\\test.txt";
@@ -103,13 +116,15 @@ public class Application {
                         int idx = lineTxt.indexOf("'", 4);
                         //System.out.println(lineTxt);只输出类库的字符
                         Pair<String,String > tmp = new Pair<>(lineTxt.substring(2,idx),"爬虫得到的");
-                        String link = "www.javadoc#libraryInfo"+lineTxt.substring(2,idx);
+                        String link = "https://docs.oracle.com/javase/8/docs/api/"+lineTxt.substring(2,idx).replace(".","/")+".html";
+                        //https://docs.oracle.com/javase/8/docs/api/java/util/package-summary.html
+                        System.out.println(link);
                         PackageInfo packageInfo = new PackageInfo(lineTxt.substring(2,idx),"爬虫得到的该类库",link);
                         res.add(packageInfo);
                         //System.out.println(idx);
                         //System.out.println(lineTxt.substring(2,idx));
 
-                        if(cnt>n){
+                        if(cnt>=n){
                             break;
                         }
 

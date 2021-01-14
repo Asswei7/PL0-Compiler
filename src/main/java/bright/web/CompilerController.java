@@ -44,15 +44,46 @@ class Result{
     }
 }
 
+
+class PackageInfo{
+    private String pname;
+    private String description;
+    private String url;
+
+    public PackageInfo(String pname, String description, String url){
+        this.pname = pname;
+        this.description = description;
+        this.url = url;
+    }
+
+    public String getPname() {
+        return pname;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public String getUrl() {
+        return url;
+    }
+}
+
 class Result_style{
     private String output;
+    private List<PackageInfo> packageList;
 
     public Result_style(String output) {
         this.output = output;
     }
+    public Result_style(String output, List<PackageInfo> packageList) {
+        this.output = output;
+        this.packageList = packageList;
+    }
 
     public String getOutput() {
         return output;
+    }
+    public List<PackageInfo> getPackageList() {
+        return packageList;
     }
 }
 
@@ -155,8 +186,14 @@ public class CompilerController {
             content += (char)aa;
             aa = reader.read();
         }
-        Result_style result = new Result_style(content);
 
+
+        PackageInfo packageInfo1 = new PackageInfo("java.test11","this is description","http://127.0.0.1");
+        PackageInfo packageInfo2 = new PackageInfo("java.test22","this is description","http://127.0.0.1");
+        List<PackageInfo> packageInfoList = new ArrayList<>();
+        packageInfoList.add(packageInfo1);
+        packageInfoList.add(packageInfo2);
+        Result_style result = new Result_style(content, packageInfoList);
 //        RD_Analyzer compiler = new RD_Analyzer(file);
 //        compiler.compile();
 //
